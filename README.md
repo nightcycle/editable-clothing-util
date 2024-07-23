@@ -1,5 +1,5 @@
 ## Install
-On wally:
+With (Wally)[https://github.com/UpliftGames/wally]:
 ```
 editable-clothing-util = "nightcycle/editable-clothing-util@0.1.0"
 ```
