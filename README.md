@@ -1,5 +1,5 @@
 ## Install
-With [Wally](https://github.com/UpliftGames/wally): `nightcycle/editable-clothing-util@release`
+With [Wally](https://github.com/UpliftGames/wally): `nightcycle/editable-clothing-util`
 
 ## Usage
 ```luau
