@@ -11,6 +11,7 @@ local shirt: Shirt
 
 
 local clothingImage: EditableImage = Util.loadClothingImageAsync(shirt)
+
 -- modifying the source clothingImage is much faster than modifying the images post application
 
 Util.apply(character, clothingImage, Enum.BodyPartR15.RightUpperArm)
