@@ -1,4 +1,10 @@
-example usage:
+## Install
+On wally:
+```
+editable-clothing-util = "nightcycle/editable-clothing-util@0.1.0"
+```
+
+## Usage
 ```luau
 local character: Model
 local shirt: Shirt
