@@ -1,7 +1,7 @@
 ## Install
 With [Wally](https://github.com/UpliftGames/wally):
 ```
-editable-clothing-util = "nightcycle/editable-clothing-util@0.1.0"
+"nightcycle/editable-clothing-util@release"
 ```
 
 ## Usage
