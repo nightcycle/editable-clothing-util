@@ -18,4 +18,8 @@ Util.apply(character, clothingImage, Enum.BodyPartR15.LowerTorso)
 -- if you want it to change while on the character, you need to use the applied EditableImage
 local upperTorsoImage: EditableImage? = Util.apply(character, clothingImage, Enum.BodyPartR15.UpperTorso)
 assert(upperTorsoImage)
+
+-- if you want it to match the underlying skin color, use this:
+local skinColor: Color3 = Color3.new(0.5,0.5,0.5)
+upperTorsoImage.bakeSkinTone(upperTorsoImage, skinColor)
 ```
