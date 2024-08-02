@@ -25,5 +25,5 @@ assert(upperTorsoImage)
 
 -- if you want it to match the underlying skin color, use this:
 local skinColor: Color3 = Color3.new(0.5,0.5,0.5)
-upperTorsoImage.bakeSkinTone(upperTorsoImage, skinColor)
+Util.bakeSkinTone(upperTorsoImage, skinColor)
 ```
