@@ -10,7 +10,7 @@ local AssetService = game:GetService("AssetService")
 type TranslationData = {
 	UVArea: Rect,
 	UVDegreeRotation: number?,
-	TextureArea: Rect?
+	TextureArea: Rect?,
 }
 type TranslationRegistry = { [Enum.BodyPartR15]: { [Enum.NormalId]: TranslationData? }? }
 -- Constants
@@ -25,9 +25,9 @@ do
 	local TEXTURE_LOWER_ARM_START_Y = 417
 	local TEXTURE_LOWER_ARM_END_Y = 468
 
-	local TEXTURE_HAND_FRONT_START_Y = TEXTURE_LOWER_ARM_END_Y-2
+	local TEXTURE_HAND_FRONT_START_Y = TEXTURE_LOWER_ARM_END_Y - 2
 	local TEXTURE_HAND_FRONT_END_Y = 483
-	local TEXTURE_HAND_BOTTOM_START_Y = TEXTURE_HAND_FRONT_END_Y+2
+	local TEXTURE_HAND_BOTTOM_START_Y = TEXTURE_HAND_FRONT_END_Y + 2
 	local TEXTURE_HAND_BOTTOM_END_Y = 548
 
 	local TEXTURE_UPPER_TORSO_START_Y = 74
@@ -47,7 +47,7 @@ do
 	local TEXTURE_TORSO_FRONT_START_X = 231
 	local TEXTURE_TORSO_FRONT_END_X = 358
 
-	local TEXTURE_LEFT_ARM_OFFSET_X = 506-TEXTURE_RIGHT_ARM_FRONT_START_X
+	local TEXTURE_LEFT_ARM_OFFSET_X = 506 - TEXTURE_RIGHT_ARM_FRONT_START_X
 
 	local UV_RIGHT_UPPER_ARM_FRONTRIGHT_START_Y = 129
 	local UV_RIGHT_UPPER_ARM_FRONTRIGHT_END_Y = 256
@@ -56,7 +56,7 @@ do
 	local UV_RIGHT_UPPER_ARM_TOP_START_Y = 4
 	local UV_RIGHT_UPPER_ARM_TOP_END_Y = 130
 
-	local UV_RIGHT_LOWER_ARM_FRONTRIGHT_START_Y = 255-3
+	local UV_RIGHT_LOWER_ARM_FRONTRIGHT_START_Y = 255 - 3
 	local UV_RIGHT_LOWER_ARM_FRONTRIGHT_END_Y = 349
 	local UV_RIGHT_LOWER_ARM_BACKLEFT_START_Y = 255
 	local UV_RIGHT_LOWER_ARM_BACKLEFT_END_Y = 349
@@ -66,8 +66,8 @@ do
 	local UV_RIGHT_HAND_FRONTLEFT_CORNER_X = 289
 	local UV_RIGHT_HAND_FRONTRIGHT_CORNER_X = 145
 
-	local TEXTURE_LEFT_ARM_FRONT_START_X = TEXTURE_RIGHT_ARM_LEFT_START_X+TEXTURE_LEFT_ARM_OFFSET_X
-	local TEXTURE_LEFT_ARM_FRONT_END_X = TEXTURE_RIGHT_ARM_LEFT_END_X+TEXTURE_LEFT_ARM_OFFSET_X
+	local TEXTURE_LEFT_ARM_FRONT_START_X = TEXTURE_RIGHT_ARM_LEFT_START_X + TEXTURE_LEFT_ARM_OFFSET_X
+	local TEXTURE_LEFT_ARM_FRONT_END_X = TEXTURE_RIGHT_ARM_LEFT_END_X + TEXTURE_LEFT_ARM_OFFSET_X
 
 	local UV_X_1 = 4
 	local UV_X_2 = 146
@@ -84,26 +84,11 @@ do
 				-- 	358,
 				-- 	267
 				-- ),
-				UVArea = Rect.new(
-					202,
-					78,
-					298+1,
-					144
-				),
+				UVArea = Rect.new(202, 78, 298 + 1, 144),
 			},
 			[Enum.NormalId.Top] = {
-				TextureArea = Rect.new(
-					TEXTURE_TORSO_FRONT_START_X,
-					8,
-					TEXTURE_TORSO_FRONT_END_X,
-					71
-				),
-				UVArea = Rect.new(
-					3,
-					21,
-					196,
-					196
-				),
+				TextureArea = Rect.new(TEXTURE_TORSO_FRONT_START_X, 8, TEXTURE_TORSO_FRONT_END_X, 71),
+				UVArea = Rect.new(3, 21, 196, 196),
 			},
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
@@ -112,78 +97,28 @@ do
 					TEXTURE_TORSO_FRONT_END_X,
 					TEXTURE_UPPER_TORSO_END_Y
 				),
-				UVArea = Rect.new(
-					3,
-					152,
-					196,
-					350+1
-				),
+				UVArea = Rect.new(3, 152, 196, 350 + 1),
 			},
 			[Enum.NormalId.Right] = {
-				TextureArea = Rect.new(
-					165,
-					TEXTURE_UPPER_TORSO_START_Y,
-					229,
-					TEXTURE_UPPER_TORSO_END_Y
-				),
-				UVArea = Rect.new(
-					486,
-					152,
-					582,
-					350
-				),
+				TextureArea = Rect.new(165, TEXTURE_UPPER_TORSO_START_Y, 229, TEXTURE_UPPER_TORSO_END_Y),
+				UVArea = Rect.new(486, 152, 582, 350),
 			},
 			[Enum.NormalId.Left] = {
-				TextureArea = Rect.new(
-					361,
-					TEXTURE_UPPER_TORSO_START_Y,
-					425,
-					TEXTURE_UPPER_TORSO_END_Y
-				),
-				UVArea = Rect.new(
-					196,
-					152,
-					196+(582-486)+1,
-					350+1
-				),
+				TextureArea = Rect.new(361, TEXTURE_UPPER_TORSO_START_Y, 425, TEXTURE_UPPER_TORSO_END_Y),
+				UVArea = Rect.new(196, 152, 196 + (582 - 486) + 1, 350 + 1),
 			},
 			[Enum.NormalId.Back] = {
-				TextureArea = Rect.new(
-					427,
-					TEXTURE_UPPER_TORSO_START_Y,
-					554,
-					TEXTURE_UPPER_TORSO_END_Y
-				),
-				UVArea = Rect.new(
-					486-(196-3)+0,
-					152,
-					486,
-					350+1
-				),
+				TextureArea = Rect.new(427, TEXTURE_UPPER_TORSO_START_Y, 554, TEXTURE_UPPER_TORSO_END_Y),
+				UVArea = Rect.new(486 - (196 - 3) + 0, 152, 486, 350 + 1),
 			},
-		} :: {[Enum.NormalId]: TranslationData?},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.LowerTorso] = {
 			[Enum.NormalId.Bottom] = {
-				TextureArea = Rect.new(
-					231,
-					204,
-					358,
-					267
-				),
-				UVArea = Rect.new(
-					3,
-					415,
-					196,
-					546
-				),
+				TextureArea = Rect.new(231, 204, 358, 267),
+				UVArea = Rect.new(3, 415, 196, 546),
 			},
 			[Enum.NormalId.Top] = {
-				UVArea = Rect.new(
-					202-1,
-					423,
-					298,
-					489+1
-				),
+				UVArea = Rect.new(202 - 1, 423, 298, 489 + 1),
 			},
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
@@ -192,56 +127,21 @@ do
 					TEXTURE_TORSO_FRONT_END_X,
 					TEXTURE_LOWER_TORSO_END_Y
 				),
-				UVArea = Rect.new(
-					3,
-					349,
-					196,
-					415
-				),
+				UVArea = Rect.new(3, 349, 196, 415),
 			},
 			[Enum.NormalId.Back] = {
-				TextureArea = Rect.new(
-					427,
-					TEXTURE_LOWER_TORSO_START_Y,
-					554,
-					TEXTURE_LOWER_TORSO_END_Y
-				),
-				UVArea = Rect.new(
-					293,
-					349,
-					486,
-					415
-				),
+				TextureArea = Rect.new(427, TEXTURE_LOWER_TORSO_START_Y, 554, TEXTURE_LOWER_TORSO_END_Y),
+				UVArea = Rect.new(293, 349, 486, 415),
 			},
 			[Enum.NormalId.Left] = {
-				TextureArea = Rect.new(
-					361,
-					TEXTURE_LOWER_TORSO_START_Y,
-					424,
-					TEXTURE_LOWER_TORSO_END_Y
-				),
-				UVArea = Rect.new(
-					196,
-					349,
-					293,
-					415
-				),
+				TextureArea = Rect.new(361, TEXTURE_LOWER_TORSO_START_Y, 424, TEXTURE_LOWER_TORSO_END_Y),
+				UVArea = Rect.new(196, 349, 293, 415),
 			},
 			[Enum.NormalId.Right] = {
-				TextureArea = Rect.new(
-					165,
-					TEXTURE_LOWER_TORSO_START_Y,
-					228,
-					TEXTURE_LOWER_TORSO_END_Y
-				),
-				UVArea = Rect.new(
-					486,
-					349,
-					582,
-					415
-				),
+				TextureArea = Rect.new(165, TEXTURE_LOWER_TORSO_START_Y, 228, TEXTURE_LOWER_TORSO_END_Y),
+				UVArea = Rect.new(486, 349, 582, 415),
 			},
-		} :: {[Enum.NormalId]: TranslationData?},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.RightUpperArm] = {
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
@@ -300,12 +200,7 @@ do
 				),
 			},
 			[Enum.NormalId.Bottom] = {
-				UVArea = Rect.new(
-					156-2, 
-					59-1, 
-					225+2, 
-					121+1
-				),
+				UVArea = Rect.new(156 - 2, 59 - 1, 225 + 2, 121 + 1),
 			},
 			[Enum.NormalId.Top] = {
 				TextureArea = Rect.new(
@@ -315,14 +210,14 @@ do
 					TEXTURE_UPPER_ARM_TOP_END_Y
 				),
 				UVArea = Rect.new(
-					UV_X_1, 
-					UV_RIGHT_UPPER_ARM_TOP_START_Y-1, 
-					UV_X_2+1, 
+					UV_X_1,
+					UV_RIGHT_UPPER_ARM_TOP_START_Y - 1,
+					UV_X_2 + 1,
 					UV_RIGHT_UPPER_ARM_TOP_END_Y
 				),
 				UVDegreeRotation = -90,
 			},
-		} :: {[Enum.NormalId]: TranslationData?},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.LeftUpperArm] = {
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
@@ -340,9 +235,9 @@ do
 			},
 			[Enum.NormalId.Right] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_FRONT_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_FRONT_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_UPPER_ARM_START_Y,
-					TEXTURE_RIGHT_ARM_FRONT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_FRONT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_UPPER_ARM_END_Y
 				),
 				UVArea = Rect.new(
@@ -354,9 +249,9 @@ do
 			},
 			[Enum.NormalId.Back] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_RIGHT_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_RIGHT_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_UPPER_ARM_START_Y,
-					TEXTURE_RIGHT_ARM_RIGHT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_RIGHT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_UPPER_ARM_END_Y
 				),
 				UVArea = Rect.new(
@@ -368,9 +263,9 @@ do
 			},
 			[Enum.NormalId.Left] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_BACK_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_BACK_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_UPPER_ARM_START_Y,
-					TEXTURE_RIGHT_ARM_BACK_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_BACK_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_UPPER_ARM_END_Y
 				),
 				UVArea = Rect.new(
@@ -381,12 +276,7 @@ do
 				),
 			},
 			[Enum.NormalId.Bottom] = {
-				UVArea = Rect.new(
-					156, 
-					59-2, 
-					225+2, 
-					121+1
-				),
+				UVArea = Rect.new(156, 59 - 2, 225 + 2, 121 + 1),
 			},
 			[Enum.NormalId.Top] = {
 				TextureArea = Rect.new(
@@ -396,14 +286,14 @@ do
 					TEXTURE_UPPER_ARM_TOP_END_Y
 				),
 				UVArea = Rect.new(
-					UV_X_1, 
-					UV_RIGHT_UPPER_ARM_TOP_START_Y, 
-					UV_X_2, 
+					UV_X_1,
+					UV_RIGHT_UPPER_ARM_TOP_START_Y,
+					UV_X_2,
 					UV_RIGHT_UPPER_ARM_TOP_END_Y
 				),
 				UVDegreeRotation = -90,
 			},
-		} :: {[Enum.NormalId]: TranslationData?},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.RightLowerArm] = {
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
@@ -442,8 +332,8 @@ do
 				),
 				UVArea = Rect.new(
 					430,
-					UV_RIGHT_LOWER_ARM_BACKLEFT_START_Y-1,
-					572+1,
+					UV_RIGHT_LOWER_ARM_BACKLEFT_START_Y - 1,
+					572 + 1,
 					UV_RIGHT_LOWER_ARM_BACKLEFT_END_Y
 				),
 			},
@@ -462,28 +352,18 @@ do
 				),
 			},
 			[Enum.NormalId.Top] = {
-				UVArea = Rect.new(
-					5, 
-					359, 
-					75, 
-					421
-				),
+				UVArea = Rect.new(5, 359, 75, 421),
 			},
 			[Enum.NormalId.Bottom] = {
-				UVArea = Rect.new(
-					84, 
-					358, 
-					155, 
-					421
-				),
+				UVArea = Rect.new(84, 358, 155, 421),
 			},
-		} :: {[Enum.NormalId]: TranslationData?},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.LeftLowerArm] = {
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_LEFT_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_LEFT_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_START_Y,
-					TEXTURE_RIGHT_ARM_LEFT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_LEFT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_END_Y
 				),
 				UVArea = Rect.new(
@@ -495,9 +375,9 @@ do
 			},
 			[Enum.NormalId.Right] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_FRONT_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_FRONT_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_START_Y,
-					TEXTURE_RIGHT_ARM_FRONT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_FRONT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_END_Y
 				),
 				UVArea = Rect.new(
@@ -509,23 +389,23 @@ do
 			},
 			[Enum.NormalId.Back] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_RIGHT_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_RIGHT_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_START_Y,
-					TEXTURE_RIGHT_ARM_RIGHT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_RIGHT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_END_Y
 				),
 				UVArea = Rect.new(
 					430,
-					UV_RIGHT_LOWER_ARM_BACKLEFT_START_Y-1,
-					572+1,
+					UV_RIGHT_LOWER_ARM_BACKLEFT_START_Y - 1,
+					572 + 1,
 					UV_RIGHT_LOWER_ARM_BACKLEFT_END_Y
 				),
 			},
 			[Enum.NormalId.Left] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_BACK_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_BACK_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_START_Y,
-					TEXTURE_RIGHT_ARM_BACK_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_BACK_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_LOWER_ARM_END_Y
 				),
 				UVArea = Rect.new(
@@ -536,22 +416,12 @@ do
 				),
 			},
 			[Enum.NormalId.Top] = {
-				UVArea = Rect.new(
-					5, 
-					359, 
-					75, 
-					421
-				),
+				UVArea = Rect.new(5, 359, 75, 421),
 			},
 			[Enum.NormalId.Bottom] = {
-				UVArea = Rect.new(
-					84, 
-					358, 
-					155, 
-					421
-				),
+				UVArea = Rect.new(84, 358, 155, 421),
 			},
-		} :: {[Enum.NormalId]: TranslationData?},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.RightHand] = {
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
@@ -561,7 +431,7 @@ do
 					TEXTURE_HAND_FRONT_END_Y
 				),
 				UVArea = Rect.new(
-					UV_X_2-1,
+					UV_X_2 - 1,
 					UV_RIGHT_HAND_FRONTLEFT_START_Y,
 					UV_RIGHT_HAND_FRONTLEFT_CORNER_X,
 					UV_RIGHT_HAND_FRONTLEFT_END_Y
@@ -577,7 +447,7 @@ do
 				UVArea = Rect.new(
 					UV_RIGHT_HAND_FRONTLEFT_CORNER_X,
 					UV_RIGHT_HAND_FRONTLEFT_START_Y,
-					UV_RIGHT_HAND_FRONTLEFT_CORNER_X+142,
+					UV_RIGHT_HAND_FRONTLEFT_CORNER_X + 142,
 					UV_RIGHT_HAND_FRONTLEFT_END_Y
 				),
 			},
@@ -590,9 +460,9 @@ do
 				),
 				UVArea = Rect.new(
 					UV_X_1,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y+40,
-					UV_X_2+1,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y+72
+					UV_RIGHT_HAND_FRONTLEFT_START_Y + 40,
+					UV_X_2 + 1,
+					UV_RIGHT_HAND_FRONTLEFT_START_Y + 72
 				),
 			},
 			[Enum.NormalId.Right] = {
@@ -610,12 +480,7 @@ do
 				),
 			},
 			[Enum.NormalId.Top] = {
-				UVArea = Rect.new(
-					359, 
-					468, 
-					430, 
-					532
-				),
+				UVArea = Rect.new(359, 468, 430, 532),
 			},
 			[Enum.NormalId.Bottom] = {
 				TextureArea = Rect.new(
@@ -624,24 +489,19 @@ do
 					TEXTURE_RIGHT_ARM_FRONT_END_X,
 					TEXTURE_HAND_BOTTOM_END_Y
 				),
-				UVArea = Rect.new(
-					438, 
-					428, 
-					581, 
-					555
-				),
-			}
-		} :: {[Enum.NormalId]: TranslationData?},
+				UVArea = Rect.new(438, 428, 581, 555),
+			},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.LeftHand] = {
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_LEFT_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_LEFT_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_HAND_FRONT_START_Y,
-					TEXTURE_RIGHT_ARM_LEFT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_LEFT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_HAND_FRONT_END_Y
 				),
 				UVArea = Rect.new(
-					UV_X_2-1,
+					UV_X_2 - 1,
 					UV_RIGHT_HAND_FRONTLEFT_START_Y,
 					UV_RIGHT_HAND_FRONTLEFT_CORNER_X,
 					UV_RIGHT_HAND_FRONTLEFT_END_Y
@@ -649,37 +509,37 @@ do
 			},
 			[Enum.NormalId.Left] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_BACK_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_BACK_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_HAND_FRONT_START_Y,
-					TEXTURE_RIGHT_ARM_BACK_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_BACK_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_HAND_FRONT_END_Y
 				),
 				UVArea = Rect.new(
 					UV_RIGHT_HAND_FRONTLEFT_CORNER_X,
 					UV_RIGHT_HAND_FRONTLEFT_START_Y,
-					UV_RIGHT_HAND_FRONTLEFT_CORNER_X+142,
+					UV_RIGHT_HAND_FRONTLEFT_CORNER_X + 142,
 					UV_RIGHT_HAND_FRONTLEFT_END_Y
 				),
 			},
 			[Enum.NormalId.Back] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_RIGHT_START_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_RIGHT_START_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_HAND_FRONT_START_Y,
-					TEXTURE_RIGHT_ARM_RIGHT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_RIGHT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_HAND_FRONT_END_Y
 				),
 				UVArea = Rect.new(
 					UV_X_1,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y+40,
-					UV_X_2+1,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y+72
+					UV_RIGHT_HAND_FRONTLEFT_START_Y + 40,
+					UV_X_2 + 1,
+					UV_RIGHT_HAND_FRONTLEFT_START_Y + 72
 				),
 			},
 			[Enum.NormalId.Right] = {
 				TextureArea = Rect.new(
-					TEXTURE_RIGHT_ARM_FRONT_START_X+TEXTURE_LEFT_ARM_OFFSET_X+1,
+					TEXTURE_RIGHT_ARM_FRONT_START_X + TEXTURE_LEFT_ARM_OFFSET_X + 1,
 					TEXTURE_HAND_FRONT_START_Y,
-					TEXTURE_RIGHT_ARM_FRONT_END_X+TEXTURE_LEFT_ARM_OFFSET_X,
+					TEXTURE_RIGHT_ARM_FRONT_END_X + TEXTURE_LEFT_ARM_OFFSET_X,
 					TEXTURE_HAND_FRONT_END_Y
 				),
 				UVArea = Rect.new(
@@ -690,12 +550,7 @@ do
 				),
 			},
 			[Enum.NormalId.Top] = {
-				UVArea = Rect.new(
-					359, 
-					468, 
-					430, 
-					532
-				),
+				UVArea = Rect.new(359, 468, 430, 532),
 			},
 			[Enum.NormalId.Bottom] = {
 				TextureArea = Rect.new(
@@ -704,14 +559,9 @@ do
 					TEXTURE_RIGHT_ARM_FRONT_END_X,
 					TEXTURE_HAND_BOTTOM_END_Y
 				),
-				UVArea = Rect.new(
-					438, 
-					428, 
-					581, 
-					555
-				),
-			}
-		} :: {[Enum.NormalId]: TranslationData?},
+				UVArea = Rect.new(438, 428, 581, 555),
+			},
+		} :: { [Enum.NormalId]: TranslationData? },
 	} :: TranslationRegistry
 	TRANSLATIONS[Enum.BodyPartR15.RightFoot] = TRANSLATIONS[Enum.BodyPartR15.RightHand]
 	TRANSLATIONS[Enum.BodyPartR15.RightLowerLeg] = TRANSLATIONS[Enum.BodyPartR15.RightLowerArm]
@@ -731,21 +581,28 @@ function drawUVWedge(
 	canvasId: Enum.NormalId,
 	faceId: Enum.NormalId
 )
-	
 	local bodyPartData = TRANSLATIONS[bodyPart]
-	if not bodyPartData then return end
+	if not bodyPartData then
+		return
+	end
 	assert(bodyPartData)
 
 	local data: TranslationData? = bodyPartData[canvasId]
-	if not data then return end
+	if not data then
+		return
+	end
 	assert(data)
 
 	local faceData: TranslationData? = bodyPartData[faceId]
-	if not faceData then return end
+	if not faceData then
+		return
+	end
 	assert(faceData)
 
 	local textureArea = faceData.TextureArea
-	if not textureArea then return end
+	if not textureArea then
+		return
+	end
 	assert(textureArea)
 
 	local isFrontBack = faceId == Enum.NormalId.Front or faceId == Enum.NormalId.Back
@@ -756,14 +613,8 @@ function drawUVWedge(
 	end
 
 	local textureCopy = sourceImage:Copy(
-		if isTop then
-			textureArea.Min
-		else
-			textureArea.Max - Vector2.new(textureArea.Width, 1), 
-			if isTop then 
-				textureArea.Min + Vector2.new(textureArea.Width, 1)
-			else	
-				textureArea.Max
+		if isTop then textureArea.Min else textureArea.Max - Vector2.new(textureArea.Width, 1),
+		if isTop then textureArea.Min + Vector2.new(textureArea.Width, 1) else textureArea.Max
 	)
 	local faceSize = if isFrontBack
 		then Vector2.new(data.UVArea.Width, data.UVArea.Height * 0.5)
@@ -797,24 +648,21 @@ function drawUVWedge(
 			else Vector2.new(data.UVArea.Width * 0.5, 0)
 
 		if readSize.X > 0 and readSize.Y > 0 then
-
 			canvasImage:WritePixels(
 				data.UVArea.Min + origin + if isPositive then Vector2.zero else originOffset,
 				readSize,
 				textureCopy:ReadPixels(origin, readSize)
 			)
-
 		end
 	end
 	textureCopy:Destroy()
 end
 
-function buildUVWedgeFace(
-	sourceImage: EditableImage,
-	bodyPartType: Enum.BodyPartR15,
-	normalId: Enum.NormalId
-)
-	assert(normalId == Enum.NormalId.Top or normalId == Enum.NormalId.Bottom, `bad wedgeFace normalId: {normalId}`)
+function buildUVWedgeFace(sourceImage: EditableImage, bodyPartType: Enum.BodyPartR15, normalId: Enum.NormalId)
+	assert(
+		normalId == Enum.NormalId.Top or normalId == Enum.NormalId.Bottom,
+		`bad wedgeFace normalId: {normalId}`
+	)
 
 	local bodyPartData = TRANSLATIONS[bodyPartType]
 	assert(bodyPartData, `"{bodyPartType}" is not supported`)
@@ -843,9 +691,9 @@ Util._TRANSLATIONS = TRANSLATIONS
 
 function Util.loadClothingImageAsync(clothing: Shirt | Pants): EditableImage
 	local contentUrl = if clothing:IsA("Shirt") then clothing.ShirtTemplate else clothing.PantsTemplate
-	
+
 	local size = Vector2.new(585, 559)
-	local editableImage =AssetService:CreateEditableImageAsync(contentUrl)
+	local editableImage = AssetService:CreateEditableImageAsync(contentUrl)
 	if editableImage.Size ~= size then
 		error(`texture is sized {editableImage.Size}, not the expected size of {size}`)
 	end
@@ -857,7 +705,6 @@ function Util.readFace(
 	bodyPartType: Enum.BodyPartR15,
 	normalId: Enum.NormalId
 ): EditableImage
-
 	local bodyPartData = TRANSLATIONS[bodyPartType]
 	assert(bodyPartData, `"{bodyPartType}" is not supported`)
 
@@ -869,7 +716,7 @@ function Util.readFace(
 		local textureImage = clothingImage:Copy(textureData.Min, textureData.Max)
 		if faceData.UVDegreeRotation then
 			textureImage:Rotate(faceData.UVDegreeRotation, true)
-		end	
+		end
 		textureImage:Resize(faceData.UVArea.Max - faceData.UVArea.Min)
 		return textureImage
 	else
@@ -883,44 +730,43 @@ function Util.writeFace(
 	bodyPartType: Enum.BodyPartR15,
 	normalId: Enum.NormalId
 )
-
 	local bodyPartData = TRANSLATIONS[bodyPartType]
 	assert(bodyPartData, `"{bodyPartType}" is not supported`)
 
 	local faceData = bodyPartData[normalId]
 	assert(faceData, `"{normalId}" on part "{bodyPartType}" is not supported`)
 
-	assert(faceData.UVArea.Width == faceImage.Size.X, `faceImage width ({faceImage.Size.X}) does not match UVArea width ({faceData.UVArea.Width})`)
-	assert(faceData.UVArea.Height == faceImage.Size.Y, `faceImage height ({faceImage.Size.Y}) does not match UVArea height ({faceData.UVArea.Height})`)
+	assert(
+		faceData.UVArea.Width == faceImage.Size.X,
+		`faceImage width ({faceImage.Size.X}) does not match UVArea width ({faceData.UVArea.Width})`
+	)
+	assert(
+		faceData.UVArea.Height == faceImage.Size.Y,
+		`faceImage height ({faceImage.Size.Y}) does not match UVArea height ({faceData.UVArea.Height})`
+	)
 
 	local size = Vector2.new(faceData.UVArea.Width, faceData.UVArea.Height)
-	
-	clothingImage:WritePixels(
-		faceData.UVArea.Min,
-		size,
-		faceImage:ReadPixels(Vector2.zero, size)
-	)
+
+	clothingImage:WritePixels(faceData.UVArea.Min, size, faceImage:ReadPixels(Vector2.zero, size))
 end
 
-function Util.getFaceTextureRect(
-	bodyPartType: Enum.BodyPartR15,
-	normalId: Enum.NormalId
-): Rect?
+function Util.getFaceTextureRect(bodyPartType: Enum.BodyPartR15, normalId: Enum.NormalId): Rect?
 	local bodyPartData = TRANSLATIONS[bodyPartType]
-	if not bodyPartData then return nil end
+	if not bodyPartData then
+		return nil
+	end
 	assert(bodyPartData)
 
 	local faceData = bodyPartData[normalId]
-	if not faceData then return nil end
+	if not faceData then
+		return nil
+	end
 	assert(faceData)
 
 	return faceData.TextureArea
 end
 
-function Util.getFaceUVRect(
-	bodyPartType: Enum.BodyPartR15,
-	normalId: Enum.NormalId
-): Rect
+function Util.getFaceUVRect(bodyPartType: Enum.BodyPartR15, normalId: Enum.NormalId): Rect
 	local bodyPartData = TRANSLATIONS[bodyPartType]
 	assert(bodyPartData, `"{bodyPartType}" is not supported`)
 
@@ -935,19 +781,18 @@ function Util.compile(
 	bodyPartType: Enum.BodyPartR15,
 	skinColor: Color3
 ): EditableImage
-
 	local bodyPartData = TRANSLATIONS[bodyPartType]
 	assert(bodyPartData, `"{bodyPartType}" is not supported`)
 
 	local bodyPartImage = Instance.new("EditableImage")
 	bodyPartImage.Size = clothingImage.Size
-	
+
 	for i, normalId in ipairs(Enum.NormalId:GetEnumItems()) do
 		local faceImage = Util.readFace(clothingImage, bodyPartType, normalId)
-	
+
 		local faceData = bodyPartData[normalId]
 		assert(faceData, `"{normalId}" on part "{bodyPartType}" is not supported`)
-	
+
 		bodyPartImage:WritePixels(
 			faceData.UVArea.Min,
 			faceImage.Size,
@@ -983,10 +828,7 @@ function Util.apply(
 	return bodyPartImage
 end
 
-function Util.bakeSkinTone(
-	editableImage: EditableImage,
-	skinColor: Color3
-)
+function Util.bakeSkinTone(editableImage: EditableImage, skinColor: Color3)
 	local sR, sG, sB = skinColor.R, skinColor.G, skinColor.B
 	local pixelArray = editableImage:ReadPixels(Vector2.zero, editableImage.Size)
 	for i = 1, editableImage.Size.X * editableImage.Size.Y do
@@ -995,15 +837,15 @@ function Util.bakeSkinTone(
 		local a = pixelArray[aI]
 		if a < 1 then
 			local rI, gI, bI = origin + 1, origin + 2, origin + 3
-			pixelArray[aI]=1
+			pixelArray[aI] = 1
 			if a == 0 then
 				pixelArray[rI], pixelArray[gI], pixelArray[bI] = sR, sG, sB
 			else
-				local r,g,b = pixelArray[rI], pixelArray[gI], pixelArray[bI]
-				r += (sR - r)*(1-a)
-				g += (sG - g)*(1-a)
-				b += (sB - b)*(1-a)
-				pixelArray[rI], pixelArray[gI], pixelArray[bI] = r,g,b
+				local r, g, b = pixelArray[rI], pixelArray[gI], pixelArray[bI]
+				r += (sR - r) * (1 - a)
+				g += (sG - g) * (1 - a)
+				b += (sB - b) * (1 - a)
+				pixelArray[rI], pixelArray[gI], pixelArray[bI] = r, g, b
 			end
 		end
 	end
