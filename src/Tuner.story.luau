@@ -3,7 +3,6 @@
 -- stylua: ignore start
 -- Packages
 local Maid = require(game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Maid"))
-local Prev = require(game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Prev"))
 -- Modules
 -- stylua: ignore end
 -- Types
