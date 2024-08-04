@@ -3,6 +3,7 @@
 -- stylua: ignore start
 -- Packages
 local Maid = require(game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Maid"))
+local Prev = require(game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Prev"))
 -- Modules
 -- stylua: ignore end
 -- Types
@@ -20,7 +21,8 @@ return function(frame: Frame)
 		local shirt: Shirt? = character:WaitForChild("Shirt", 10) :: Shirt?
 		assert(shirt)
 
-		local clothingImage: EditableImage = maid:GiveTask(Util.loadClothingImageAsync(shirt))
+		local clothingImage: EditableImage =
+			maid:GiveTask(Util.loadClothingImageAsync(shirt))
 
 		local function displayImage(editableImage: EditableImage): ImageLabel
 			local display = maid:GiveTask(Instance.new("ImageLabel"))
@@ -44,7 +46,8 @@ return function(frame: Frame)
 				for i, normal in ipairs(Enum.NormalId:GetEnumItems()) do
 					local area = Util.getFaceTextureRect(bodyPart, normal)
 					if area then
-						local region = maid:GiveTask(clothingImage:Copy(area.Min, area.Max))
+						local region =
+							maid:GiveTask(clothingImage:Copy(area.Min, area.Max))
 						canvas:WritePixels(
 							area.Min,
 							area.Max - area.Min,
@@ -97,17 +100,32 @@ return function(frame: Frame)
 				display.ImageTransparency = 0.6
 				display.ImageColor3 = tint or Color3.new(1, 1, 1)
 
-				Util.bakeSkinTone(appliedImage, Color3.new(1, 0, 0))
+				-- Util.bakeSkinTone(appliedImage, Color3.new(1, 0, 0))
 			end
 			-- do
-			renderAppliedImage(Enum.BodyPartR15.RightUpperArm, Color3.new(1, 0, 0))
-			renderAppliedImage(Enum.BodyPartR15.RightLowerArm, Color3.new(0, 1, 0))
-			-- 	-- renderAppliedImage(Enum.BodyPartR15.RightHand, Color3.new(0, 0, 1))
+			-- renderAppliedImage(Enum.BodyPartR15.RightUpperArm, Color3.new(0.5, 0.5, 0.5)) --Color3.new(1, 0, 0))
+			-- renderAppliedImage(Enum.BodyPartR15.RightLowerArm, Color3.new(0.5, 0.5, 0.5))
+			-- renderAppliedImage(Enum.BodyPartR15.RightHand, Color3.new(0.5, 0.5, 0.5)) -- Color3.new(0, 0, 1))
 			-- end
 			-- do
-			-- 	renderAppliedImage(Enum.BodyPartR15.UpperTorso, Color3.new(1, 0, 0))
-			-- 	renderAppliedImage(Enum.BodyPartR15.LowerTorso, Color3.new(0, 1, 0))
+			-- renderAppliedImage(Enum.BodyPartR15.UpperTorso, Color3.new(0.5, 0.5, 0.5)) --Color3.new(1, 0, 0))
+			-- renderAppliedImage(Enum.BodyPartR15.LowerTorso, Color3.new(0.5, 0.5, 0.5)) --Color3.new(0, 1, 0))
 			-- end
+		end
+		do
+			local function renderImage(bodyPart: Enum.BodyPartR15)
+				local appliedImage = Util.apply(character, clothingImage, bodyPart)
+				assert(appliedImage)
+				maid:GiveTask(appliedImage)
+			end
+			renderImage(Enum.BodyPartR15.RightUpperArm)
+			renderImage(Enum.BodyPartR15.RightLowerArm)
+			renderImage(Enum.BodyPartR15.RightHand)
+			renderImage(Enum.BodyPartR15.LeftUpperArm)
+			renderImage(Enum.BodyPartR15.LeftLowerArm)
+			renderImage(Enum.BodyPartR15.LeftHand)
+			renderImage(Enum.BodyPartR15.LowerTorso)
+			renderImage(Enum.BodyPartR15.UpperTorso)
 		end
 	end)
 	return function()

@@ -19,6 +19,10 @@ local TRANSLATIONS: TranslationRegistry = {}
 do
 	local TEXTURE_ARM_GAP_WIDTH = 2
 	local TEXTURE_ARM_WIDTH = 64
+	local TEXTURE_FRONT_LEFT_OFFSET = (308 - 217)
+	local TEXTURE_LEFT_LEFT_OFFSET = (374 - 19)
+	local TEXTURE_BACK_LEFT_OFFSET = (440 - 85)
+	local TEXTURE_RIGHT_LEFT_OFFSET = (506 - 151)
 
 	local TEXTURE_RIGHT_ARM_LEFT_START_X = 19
 	local TEXTURE_RIGHT_ARM_LEFT_END_X = TEXTURE_RIGHT_ARM_LEFT_START_X
@@ -31,6 +35,7 @@ do
 
 	local TEXTURE_RIGHT_ARM_RIGHT_START_X = TEXTURE_RIGHT_ARM_BACK_END_X
 		+ TEXTURE_ARM_GAP_WIDTH
+
 	local TEXTURE_RIGHT_ARM_RIGHT_END_X = TEXTURE_RIGHT_ARM_RIGHT_START_X
 		+ TEXTURE_ARM_WIDTH
 
@@ -40,13 +45,17 @@ do
 		+ TEXTURE_ARM_WIDTH
 
 	local TEXTURE_UPPER_ARM_EXTENSION = 36
-	local TEXTURE_UPPER_ARM_HEIGHT = 52 + TEXTURE_UPPER_ARM_EXTENSION
+	local TEXTURE_UPPER_ARM_BASE_HEIGHT = 52
+	local TEXTURE_UPPER_ARM_HEIGHT = TEXTURE_UPPER_ARM_BASE_HEIGHT
+		+ TEXTURE_UPPER_ARM_EXTENSION
 
 	local TEXTURE_UPPER_ARM_START_Y = 355
 	local TEXTURE_UPPER_ARM_END_Y = TEXTURE_UPPER_ARM_START_Y + TEXTURE_UPPER_ARM_HEIGHT
 
 	local TEXTURE_LOWER_ARM_HEIGHT_EXTENSION = 36
-	local TEXTURE_LOWER_ARM_HEIGHT = 36 + TEXTURE_LOWER_ARM_HEIGHT_EXTENSION
+	local TEXTURE_LOWER_ARM_BASE_HEIGHT = 36
+	local TEXTURE_LOWER_ARM_HEIGHT = TEXTURE_LOWER_ARM_BASE_HEIGHT
+		+ TEXTURE_LOWER_ARM_HEIGHT_EXTENSION
 
 	local TEXTURE_LOWER_ARM_START_Y = 408
 	local TEXTURE_LOWER_ARM_END_Y = TEXTURE_LOWER_ARM_START_Y + TEXTURE_LOWER_ARM_HEIGHT
@@ -55,9 +64,9 @@ do
 	local UV_SCALE = 2
 	local UV_GAP_HEIGHT = 1
 
-	local UV_ARM_WIDTH = 142
-	local UV_ARM_BACKRIGHT_CORNER_X = 5
-	local UV_ARM_FRONTRIGHT_CORNER_X = UV_ARM_BACKRIGHT_CORNER_X + UV_ARM_WIDTH
+	local UV_ARM_WIDTH = 142 + 0
+	local UV_ARM_BACKRIGHT_CORNER_X = 5 - 1
+	local UV_ARM_FRONTRIGHT_CORNER_X = UV_ARM_BACKRIGHT_CORNER_X + UV_ARM_WIDTH + 1
 	local UV_ARM_FRONTLEFT_CORNER_X = UV_ARM_FRONTRIGHT_CORNER_X + UV_ARM_WIDTH
 	local UV_ARM_BACKLEFT_CORNER_X = UV_ARM_FRONTLEFT_CORNER_X + UV_ARM_WIDTH
 
@@ -70,11 +79,16 @@ do
 	local UV_UPPER_ARM_START_Y = 130
 	local UV_UPPER_ARM_END_Y = UV_UPPER_ARM_START_Y + UV_UPPER_ARM_HEIGHT
 
+	local UV_HAND_HEIGHT = 34
+	local UV_HAND_START_Y = 426
+	local UV_HAND_END_Y = UV_HAND_START_Y + UV_HAND_HEIGHT
+
 	local TEXTURE_UPPER_ARM_TOP_START_Y = 289
 	local TEXTURE_UPPER_ARM_TOP_END_Y = 352
 
-	local TEXTURE_HAND_FRONT_START_Y = TEXTURE_LOWER_ARM_END_Y - 2
+	local TEXTURE_HAND_FRONT_START_Y = TEXTURE_LOWER_ARM_END_Y - 16
 	local TEXTURE_HAND_FRONT_END_Y = 483
+
 	local TEXTURE_HAND_BOTTOM_START_Y = TEXTURE_HAND_FRONT_END_Y + 2
 	local TEXTURE_HAND_BOTTOM_END_Y = 548
 
@@ -86,22 +100,8 @@ do
 	local TEXTURE_TORSO_FRONT_START_X = 231
 	local TEXTURE_TORSO_FRONT_END_X = 358
 
-	local TEXTURE_LEFT_ARM_OFFSET_X = 506 - TEXTURE_RIGHT_ARM_FRONT_START_X
-
 	local UV_RIGHT_UPPER_ARM_TOP_START_Y = 4
 	local UV_RIGHT_UPPER_ARM_TOP_END_Y = 130
-
-	local UV_RIGHT_HAND_FRONTLEFT_START_Y = 428
-	local UV_RIGHT_HAND_FRONTLEFT_END_Y = 461
-	local UV_RIGHT_HAND_FRONTLEFT_CORNER_X = 289
-	local UV_RIGHT_HAND_FRONTRIGHT_CORNER_X = 145
-
-	local TEXTURE_LEFT_ARM_FRONT_START_X = TEXTURE_RIGHT_ARM_LEFT_START_X
-		+ TEXTURE_LEFT_ARM_OFFSET_X
-	local TEXTURE_LEFT_ARM_FRONT_END_X = TEXTURE_RIGHT_ARM_LEFT_END_X
-		+ TEXTURE_LEFT_ARM_OFFSET_X
-
-	local UV_X_2 = 146
 
 	TRANSLATIONS = {
 		[Enum.BodyPartR15.UpperTorso] = {
@@ -124,7 +124,7 @@ do
 					TEXTURE_TORSO_FRONT_END_X,
 					TEXTURE_UPPER_TORSO_END_Y
 				),
-				UVArea = Rect.new(3, 152, 196, 350 + 1),
+				UVArea = Rect.new(3, 152, 196 - 1, 350 + 1 - 1),
 			},
 			[Enum.NormalId.Right] = {
 				TextureArea = Rect.new(
@@ -133,7 +133,7 @@ do
 					229,
 					TEXTURE_UPPER_TORSO_END_Y
 				),
-				UVArea = Rect.new(486, 152, 582, 350),
+				UVArea = Rect.new(486 - 2, 152, 582, 350),
 			},
 			[Enum.NormalId.Left] = {
 				TextureArea = Rect.new(
@@ -151,7 +151,7 @@ do
 					554,
 					TEXTURE_UPPER_TORSO_END_Y
 				),
-				UVArea = Rect.new(486 - (196 - 3) + 0, 152, 486, 350 + 1),
+				UVArea = Rect.new(486 - (196 - 3) + 0, 152 + 1, 486 - 2, 350 + 1 - 1),
 			},
 		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.LowerTorso] = {
@@ -169,7 +169,7 @@ do
 					TEXTURE_TORSO_FRONT_END_X,
 					TEXTURE_LOWER_TORSO_END_Y
 				),
-				UVArea = Rect.new(3, 349, 196, 415),
+				UVArea = Rect.new(3, 349, 196 - 1, 415),
 			},
 			[Enum.NormalId.Back] = {
 				TextureArea = Rect.new(
@@ -178,7 +178,7 @@ do
 					554,
 					TEXTURE_LOWER_TORSO_END_Y
 				),
-				UVArea = Rect.new(293, 349, 486, 415),
+				UVArea = Rect.new(293, 349, 486 - 1, 415),
 			},
 			[Enum.NormalId.Left] = {
 				TextureArea = Rect.new(
@@ -187,7 +187,7 @@ do
 					424,
 					TEXTURE_LOWER_TORSO_END_Y
 				),
-				UVArea = Rect.new(196, 349, 293, 415),
+				UVArea = Rect.new(196 - 1, 349, 293, 415),
 			},
 			[Enum.NormalId.Right] = {
 				TextureArea = Rect.new(
@@ -196,7 +196,7 @@ do
 					228,
 					TEXTURE_LOWER_TORSO_END_Y
 				),
-				UVArea = Rect.new(486, 349, 582, 415),
+				UVArea = Rect.new(486 - 1, 349, 582, 415),
 			},
 		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.RightUpperArm] = {
@@ -269,10 +269,86 @@ do
 				UVArea = Rect.new(
 					UV_ARM_BACKRIGHT_CORNER_X,
 					UV_RIGHT_UPPER_ARM_TOP_START_Y - 1,
-					UV_X_2 + 1,
+					147,
 					UV_RIGHT_UPPER_ARM_TOP_END_Y
 				),
 				UVDegreeRotation = -90,
+			},
+		} :: { [Enum.NormalId]: TranslationData? },
+		[Enum.BodyPartR15.LeftUpperArm] = {
+			[Enum.NormalId.Front] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_FRONT_START_X + TEXTURE_FRONT_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_FRONT_END_X + TEXTURE_FRONT_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_UPPER_ARM_START_Y,
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_UPPER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Right] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_RIGHT_START_X + TEXTURE_RIGHT_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_RIGHT_END_X + TEXTURE_RIGHT_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_BACKRIGHT_CORNER_X,
+					UV_UPPER_ARM_START_Y,
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_UPPER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Back] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_BACK_START_X + TEXTURE_BACK_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_BACK_END_X + TEXTURE_BACK_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_BACKLEFT_CORNER_X,
+					UV_UPPER_ARM_START_Y,
+					UV_ARM_BACKLEFT_CORNER_X + UV_ARM_WIDTH,
+					UV_UPPER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Left] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_LEFT_START_X + TEXTURE_LEFT_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_LEFT_END_X + TEXTURE_LEFT_LEFT_OFFSET,
+					TEXTURE_UPPER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_UPPER_ARM_START_Y,
+					UV_ARM_BACKLEFT_CORNER_X,
+					UV_UPPER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Bottom] = {
+				UVArea = Rect.new(156 - 2, 59 - 1, 225 + 2, 121 + 1),
+			},
+			[Enum.NormalId.Top] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_FRONT_START_X,
+					TEXTURE_UPPER_ARM_TOP_START_Y,
+					TEXTURE_RIGHT_ARM_FRONT_END_X,
+					TEXTURE_UPPER_ARM_TOP_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_BACKRIGHT_CORNER_X,
+					UV_RIGHT_UPPER_ARM_TOP_START_Y - 1,
+					147,
+					UV_RIGHT_UPPER_ARM_TOP_END_Y
+				),
+				UVDegreeRotation = 90,
 			},
 		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.RightLowerArm] = {
@@ -339,6 +415,70 @@ do
 				UVArea = Rect.new(84, 358, 155, 421),
 			},
 		} :: { [Enum.NormalId]: TranslationData? },
+		[Enum.BodyPartR15.LeftLowerArm] = {
+			[Enum.NormalId.Front] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_FRONT_START_X + TEXTURE_FRONT_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_FRONT_END_X + TEXTURE_FRONT_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_LOWER_ARM_START_Y,
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_LOWER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Right] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_RIGHT_START_X + TEXTURE_RIGHT_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_RIGHT_END_X + TEXTURE_RIGHT_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_BACKRIGHT_CORNER_X,
+					UV_LOWER_ARM_START_Y,
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_LOWER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Back] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_BACK_START_X + TEXTURE_BACK_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_BACK_END_X + TEXTURE_BACK_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_BACKLEFT_CORNER_X,
+					UV_LOWER_ARM_START_Y,
+					UV_ARM_BACKLEFT_CORNER_X + UV_ARM_WIDTH,
+					UV_LOWER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Left] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_LEFT_START_X + TEXTURE_LEFT_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_START_Y,
+					TEXTURE_RIGHT_ARM_LEFT_END_X + TEXTURE_LEFT_LEFT_OFFSET,
+					TEXTURE_LOWER_ARM_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_LOWER_ARM_START_Y,
+					UV_ARM_BACKLEFT_CORNER_X,
+					UV_LOWER_ARM_END_Y
+				),
+			},
+			[Enum.NormalId.Top] = {
+				UVArea = Rect.new(5, 359, 75, 421),
+			},
+			[Enum.NormalId.Bottom] = {
+				UVArea = Rect.new(84, 358, 155, 421),
+			},
+		} :: { [Enum.NormalId]: TranslationData? },
 		[Enum.BodyPartR15.RightHand] = {
 			[Enum.NormalId.Front] = {
 				TextureArea = Rect.new(
@@ -348,10 +488,10 @@ do
 					TEXTURE_HAND_FRONT_END_Y
 				),
 				UVArea = Rect.new(
-					UV_X_2 - 1,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y,
-					UV_RIGHT_HAND_FRONTLEFT_CORNER_X,
-					UV_RIGHT_HAND_FRONTLEFT_END_Y
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_HAND_START_Y,
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_HAND_END_Y
 				),
 			},
 			[Enum.NormalId.Left] = {
@@ -362,10 +502,10 @@ do
 					TEXTURE_HAND_FRONT_END_Y
 				),
 				UVArea = Rect.new(
-					UV_RIGHT_HAND_FRONTLEFT_CORNER_X,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y,
-					UV_RIGHT_HAND_FRONTLEFT_CORNER_X + 142,
-					UV_RIGHT_HAND_FRONTLEFT_END_Y
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_HAND_START_Y,
+					UV_ARM_BACKLEFT_CORNER_X,
+					UV_HAND_END_Y
 				),
 			},
 			[Enum.NormalId.Back] = {
@@ -377,9 +517,9 @@ do
 				),
 				UVArea = Rect.new(
 					UV_ARM_BACKRIGHT_CORNER_X,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y + 40,
-					UV_X_2 + 1,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y + 72
+					UV_HAND_START_Y + 36 + 4,
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_HAND_END_Y + 36 + 4
 				),
 			},
 			[Enum.NormalId.Right] = {
@@ -391,9 +531,9 @@ do
 				),
 				UVArea = Rect.new(
 					UV_ARM_BACKRIGHT_CORNER_X,
-					UV_RIGHT_HAND_FRONTLEFT_START_Y,
-					UV_RIGHT_HAND_FRONTRIGHT_CORNER_X,
-					UV_RIGHT_HAND_FRONTLEFT_END_Y
+					UV_HAND_START_Y,
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_HAND_END_Y
 				),
 			},
 			[Enum.NormalId.Top] = {
@@ -407,6 +547,77 @@ do
 					TEXTURE_HAND_BOTTOM_END_Y
 				),
 				UVArea = Rect.new(438, 428, 581, 555),
+			},
+		} :: { [Enum.NormalId]: TranslationData? },
+		[Enum.BodyPartR15.LeftHand] = {
+			[Enum.NormalId.Front] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_FRONT_START_X + TEXTURE_FRONT_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_START_Y,
+					TEXTURE_RIGHT_ARM_FRONT_END_X + TEXTURE_FRONT_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_HAND_START_Y,
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_HAND_END_Y
+				),
+			},
+			[Enum.NormalId.Left] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_LEFT_START_X + TEXTURE_LEFT_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_START_Y,
+					TEXTURE_RIGHT_ARM_LEFT_END_X + TEXTURE_LEFT_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_FRONTLEFT_CORNER_X,
+					UV_HAND_START_Y,
+					UV_ARM_BACKLEFT_CORNER_X,
+					UV_HAND_END_Y
+				),
+			},
+			[Enum.NormalId.Back] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_BACK_START_X + TEXTURE_BACK_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_START_Y,
+					TEXTURE_RIGHT_ARM_BACK_END_X + TEXTURE_BACK_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_BACKRIGHT_CORNER_X,
+					UV_HAND_START_Y + 36 + 4,
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_HAND_END_Y + 36 + 4
+				),
+			},
+			[Enum.NormalId.Right] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_RIGHT_START_X + TEXTURE_RIGHT_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_START_Y,
+					TEXTURE_RIGHT_ARM_RIGHT_END_X + TEXTURE_RIGHT_LEFT_OFFSET,
+					TEXTURE_HAND_FRONT_END_Y
+				),
+				UVArea = Rect.new(
+					UV_ARM_BACKRIGHT_CORNER_X,
+					UV_HAND_START_Y,
+					UV_ARM_FRONTRIGHT_CORNER_X,
+					UV_HAND_END_Y
+				),
+			},
+			[Enum.NormalId.Top] = {
+				UVArea = Rect.new(359, 468, 430, 532),
+			},
+			[Enum.NormalId.Bottom] = {
+				TextureArea = Rect.new(
+					TEXTURE_RIGHT_ARM_FRONT_START_X,
+					TEXTURE_HAND_BOTTOM_START_Y,
+					TEXTURE_RIGHT_ARM_FRONT_END_X,
+					TEXTURE_HAND_BOTTOM_END_Y
+				),
+				UVArea = Rect.new(438, 428, 581, 555),
+				UVDegreeRotation = 180,
 			},
 		} :: { [Enum.NormalId]: TranslationData? },
 	} :: TranslationRegistry
@@ -663,6 +874,7 @@ function Util.compile(
 	local bodyPartImage = Instance.new("EditableImage")
 	bodyPartImage.Size = clothingImage.Size
 
+	-- solveFace(Enum.NormalId.Bottom)
 	for i, normalId in ipairs(Enum.NormalId:GetEnumItems()) do
 		local faceImage = Util.readFace(clothingImage, bodyPartType, normalId)
 
