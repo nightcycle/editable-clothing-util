@@ -2,15 +2,6 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "rojo-build",
-			"type": "shell",
-			"command": "sh scripts/workspace/rojo-build.sh",
-			"problemMatcher": [],
-			"runOptions": {
-				"runOn": "folderOpen"
-			}
-		},
-		{
 			"label": "rojo-serve",
 			"type": "shell",
 			"command": "rojo serve dev.project.json",
