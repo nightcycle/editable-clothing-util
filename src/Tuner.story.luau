@@ -12,6 +12,7 @@ local Maid = require(game:GetService("ReplicatedStorage"):WaitForChild("Packages
 -- Class
 return function(frame: Frame)
 	local maid = Maid.new()
+	local isAlive = true
 	task.spawn(function()
 		local Util = require(script.Parent)
 		local character: Model? = workspace:WaitForChild("Rig", 10) :: Model
@@ -33,6 +34,7 @@ return function(frame: Frame)
 			displayImage.Parent = display
 			return display
 		end
+		-- displayImage(clothingImage)
 
 		do
 			local function renderTextureImage(bodyPart: Enum.BodyPartR15, tint: Color3?)
@@ -56,15 +58,15 @@ return function(frame: Frame)
 				display.ImageTransparency = 0.3
 				display.ImageColor3 = tint or Color3.new(1, 1, 1)
 			end
-			-- do
-			-- 	renderTextureImage(Enum.BodyPartR15.RightUpperArm, Color3.new(1, 0, 0))
-			-- 	renderTextureImage(Enum.BodyPartR15.RightLowerArm, Color3.new(0, 1, 0))
-			-- 	renderTextureImage(Enum.BodyPartR15.RightHand, Color3.new(0, 0, 1))
-			-- end
 			do
-				renderTextureImage(Enum.BodyPartR15.UpperTorso, Color3.new(1, 0, 0))
-				renderTextureImage(Enum.BodyPartR15.LowerTorso, Color3.new(0, 1, 0))
+				-- renderTextureImage(Enum.BodyPartR15.RightUpperArm, Color3.new(1, 0, 0))
+				-- renderTextureImage(Enum.BodyPartR15.RightLowerArm, Color3.new(0, 1, 0))
+				-- renderTextureImage(Enum.BodyPartR15.RightHand, Color3.new(0, 0, 1))
 			end
+			-- do
+			-- 	renderTextureImage(Enum.BodyPartR15.UpperTorso, Color3.new(1, 0, 0))
+			-- 	renderTextureImage(Enum.BodyPartR15.LowerTorso, Color3.new(0, 1, 0))
+			-- end
 		end
 
 		do
@@ -72,6 +74,23 @@ return function(frame: Frame)
 				local appliedImage = Util.apply(character, clothingImage, bodyPart)
 				assert(appliedImage)
 				maid:GiveTask(appliedImage)
+
+				local surfaceAppearance = maid:GiveTask(Instance.new("SurfaceAppearance"))
+				surfaceAppearance.Color = tint or Color3.new(1, 1, 1)
+				surfaceAppearance.Parent = appliedImage.Parent
+				local part = surfaceAppearance.Parent
+				task.spawn(function()
+					while isAlive do
+						if surfaceAppearance.Parent then
+							surfaceAppearance.Parent = nil
+						else
+							surfaceAppearance.Parent = part
+						end
+						task.wait(0.2)
+					end
+				end)
+
+				appliedImage.Parent = surfaceAppearance
 
 				local display = displayImage(appliedImage)
 				display.Name = `{bodyPart}`
@@ -81,9 +100,9 @@ return function(frame: Frame)
 				Util.bakeSkinTone(appliedImage, Color3.new(1, 0, 0))
 			end
 			-- do
-			-- 	renderAppliedImage(Enum.BodyPartR15.RightUpperArm, Color3.new(1, 0, 0))
-			-- 	renderAppliedImage(Enum.BodyPartR15.RightLowerArm, Color3.new(0, 1, 0))
-			-- 	renderAppliedImage(Enum.BodyPartR15.RightHand, Color3.new(0, 0, 1))
+			renderAppliedImage(Enum.BodyPartR15.RightUpperArm, Color3.new(1, 0, 0))
+			renderAppliedImage(Enum.BodyPartR15.RightLowerArm, Color3.new(0, 1, 0))
+			-- 	-- renderAppliedImage(Enum.BodyPartR15.RightHand, Color3.new(0, 0, 1))
 			-- end
 			-- do
 			-- 	renderAppliedImage(Enum.BodyPartR15.UpperTorso, Color3.new(1, 0, 0))
@@ -92,6 +111,7 @@ return function(frame: Frame)
 		end
 	end)
 	return function()
+		isAlive = false
 		maid:Destroy()
 	end
 end
