@@ -747,22 +747,49 @@ function drawUVWedge(
 
 	local isFrontBack = faceId == Enum.NormalId.Front or faceId == Enum.NormalId.Back
 	local isPositive = faceId == Enum.NormalId.Front or faceId == Enum.NormalId.Right
-	local isTop = canvasId == Enum.NormalId.Top and isFrontBack
-	if isTop then
+	local isTop = canvasId == Enum.NormalId.Top --and isFrontBack
+	if isTop and isFrontBack then
 		isPositive = not isPositive
 	end
+	
+	local copyMin = if isTop then textureArea.Min else textureArea.Max - Vector2.new(textureArea.Width, 1)
+	local copyMax = if isTop then textureArea.Min + Vector2.new(textureArea.Width, 1) else textureArea.Max
 
 	local textureCopy = sourceImage:Copy(
-		if isTop
-			then textureArea.Min
-			else textureArea.Max - Vector2.new(textureArea.Width, 1),
-		if isTop
-			then textureArea.Min + Vector2.new(textureArea.Width, 1)
-			else textureArea.Max
+		copyMin,
+		copyMax
 	)
+
+	-- print(`bodyPart: {bodyPart}, isTop={isTop}, faceId={faceId}, canvasId={canvasId}, isPositive={isPositive}, isTop={isTop}`)
+	-- if bodyPart == Enum.BodyPartR15.RightLowerArm and canvasId == Enum.NormalId.Top then
+	-- 	local parent: ImageLabel = game:GetService("CoreGui").DebugGui.ImageLabel
+	-- 	parent:ClearAllChildren()
+	-- 	local debugCopy = sourceImage:Copy(Vector2.zero, sourceImage.Size)
+	-- 	parent.Size = UDim2.fromOffset(debugCopy.Size.X, debugCopy.Size.Y)
+		
+	-- 	debugCopy:DrawRectangle(
+	-- 		textureArea.Min,
+	-- 		textureArea.Max-textureArea.Min,
+	-- 		Color3.new(0,0,1),
+	-- 		0,
+	-- 		Enum.ImageCombineType.BlendSourceOver
+	-- 	)
+
+	-- 	debugCopy:DrawRectangle(
+	-- 		copyMin,
+	-- 		copyMax-copyMin,
+	-- 		Color3.new(0,1,0),
+	-- 		0,
+	-- 		Enum.ImageCombineType.BlendSourceOver
+	-- 	)
+		
+	-- 	debugCopy.Parent = parent
+	-- end
+
 	local faceSize = if isFrontBack
-		then Vector2.new(data.UVArea.Width, data.UVArea.Height * 0.5)
-		else Vector2.new(data.UVArea.Width * 0.5, data.UVArea.Height)
+		then Vector2.new(data.UVArea.Width, math.round(data.UVArea.Height * 0.5))
+		else Vector2.new(math.round(data.UVArea.Width * 0.5), data.UVArea.Height)
+	
 	local rotation = if faceId == Enum.NormalId.Back
 		then 180
 		elseif faceId == Enum.NormalId.Right then -90
@@ -777,11 +804,14 @@ function drawUVWedge(
 	local dim = if isFrontBack then faceSize.Y - 1 else faceSize.X - 1
 	local altDim = if isFrontBack then faceSize.X - 1 else faceSize.Y - 1
 
+
+
+
 	for opp = 0, dim do
 		local adj = math.ceil(
 			if isFrontBack then opp / math.tan(angle) else math.tan(angle) * opp
 		)
-		local invAdj = altDim + 1 - adj * 2
+		local invAdj = altDim + 1 - (adj * 2)
 
 		local progress = if isPositive then opp else dim - opp
 
@@ -798,6 +828,13 @@ function drawUVWedge(
 			else Vector2.new(data.UVArea.Width * 0.5, 0)
 
 		if readSize.X > 0 and readSize.Y > 0 then
+			local pixels = table.create(readSize.X * readSize.Y * 4, 1)
+			for i, v in ipairs(pixels) do
+				if i % 4 == 1 then
+					pixels[i] = 0
+				end
+			end
+
 			canvasImage:WritePixels(
 				data.UVArea.Min
 					+ origin
